@@ -9,9 +9,11 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   public getCliente() {
+    const hola = "";
     const url = `http://localhost:3000/customers`;
     return this.http.get(url);
   }
+  
 
   /*public deleteCliente(cli_id){
     const url = 'http://localhost:3000/pizzas/'+cli_id;
@@ -25,7 +27,7 @@ export class ClienteService {
     return this.http.post(url, body);
 
   }
-
+sadasd
   public updateCliente(piz_id: any) {
     const url = 'http://localhost:3000/pizzas';
     return this.http.put(url, piz_id)
