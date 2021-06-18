@@ -1,180 +1,334 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header">
-                    ADMINISTRACION CLIENTES
-                </div>
-                <div class="card-body">
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                        data-target="#crearCliente">
-                        Nuevo Cliente
-                    </button>
-                    <br>
-                </div>
-                
-                <div class="modal fade" id="crearCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <br>
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Crear Cliente</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form [formGroup]="form">
-                                    <div class="form-group">
-                                        <input type="text" name="LAST-NAME" formControlName="txt_storeid"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="FIRST-NAME" formControlName="txt_firstname"
-                                            placeholder="Insertar nombre" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="LAST-NAME" formControlName="txt_lastname"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="EMAIL" formControlName="txt_email"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="ADDRES-ID" formControlName="txt_addresID"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="ACTIVE" formControlName="txt_active"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="CREATE-DATE" formControlName="txt_createDate"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="LAST-UPDATE" formControlName="txt_lastUpdate"
-                                            placeholder="Insertar apellido" class="form-control">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" 
-                                    data-dismiss="modal">Crear</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">ADMINISTRACION CLIENTES</div>
+        <div class="card-body">
+          <button
+            type="button"
+            class="btn btn-primary btn-block"
+            data-toggle="modal"
+            data-target="#crearCliente"
+          >
+            Nuevo Cliente
+          </button>
+          <br />
+        </div>
 
+        <div
+          class="modal fade"
+          id="crearCliente"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <br />
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Crear Cliente
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="form">
+                  <div class="form-group">
+                    <label for="">ID-cliente</label>
+                    <input
+                      type="text"
+                      type="number"
+                      name="ID-CLIENT"
+                      formControlName="txt_idClient"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input
+                      type="text"
+                      name="FIRST-NAME"
+                      formControlName="txt_firstname"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="">Apellido</label>
+                    <input
+                      type="text"
+                      name="LAST-NAME"
+                      formControlName="txt_lastname"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Email</label>
+                    <input
+                      type="text"
+                      name="EMAIL"
+                      formControlName="txt_email"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="">Tienda</label>
+                    <select
+                      name="STORE"
+                      class="form-control"
+                      formControlName="select_store"
+                    >
+                      <option
+                        *ngFor="let item of store; let i = index"
+                        [value]="item"
+                      >
+                        Tienda {{ store[i] }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Dirección</label>
+                    <select
+                      name="ADDRESS"
+                      class="form-control"
+                      formControlName="select_address"
+                    >
+                      <option
+                        *ngFor="let item of address"
+                        [value]="item.addressId"
+                      >
+                        {{ item.addressName }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ISACTIVE">Estado</label>
+                    <select
+                      name="ISACTIVE"
+                      class="form-control"
+                      formControlName="select_isActive"
+                    >
+                      <option value="1">Activo</option>
+                      <option value="0" selected>Inactivo</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  (click)="insertCliente()"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                >
+                  Crear
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="col-md-12">
-            <table class="table table-bordered table-hover bg-white">
-                <thead>
-                    <tr>
-                        <th>ID-CUSTOMER</th>
-                        <th>STORE-ID</th>
-                        <th>FIRST-NAME</th>
-                        <th>LAST-NAME</th>
-                        <th>EMAIL</th>
-                        <th>ADDRES-ID</th>
-                        <th>ACTIVE</th>
-                        <th>CREATE-DATE</th>
-                        <th>LAST-UPDATE</th>
-                        <th>OPCIONES</th>
-
-                    </tr>
-
-                </thead>
-                <tbody>
-                    <tr *ngFor="let c of clientes">
-                        <td>
-                           {{c.customer_id}} 
-                        </td>
-                        <td>
-                            {{c.store_id}}
-                        </td>
-                        <td>
-                            {{c.first_name}}  
-                        </td>
-                        <td>
-                            {{c.last_name}} 
-                         </td>
-                         <td>
-                             {{c.email}} 
-                         </td>
-                         <td>
-                             {{c.address_id}}  
-                         </td>
-                         <td>
-                             {{c.active}}  
-                         </td>
-                         <td>
-                             {{c.create_date}}  
-                         </td>
-                         <td>
-                             {{c.last_update}}  
-                         </td>
-                        <td class="d-flex-justify-content-center">
-                            <a class="btn btn-danger" >
-                                <i class="fas fa-trash-alt"> </i>
-                            </a>
-                            <a class="btn btn-success" data-toggle="modal" data-target="#editarCliente"
-                                >
-                                <i class="fas fa-edit"> </i>
-                            </a>
-                            <div class="modal fade" id="editarPizza" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Editar Pizza</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form [formGroup]="form">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <h6>
-                                                            <!--ID PIZZA: {{informacionPizza.piz_id}}-->
-                                                            <br>
-                                                            <br>
-                                                           <!--NOMBRE: {{informacionPizza.name}}--> 
-                                                        </h6>
-                                                    </label>
-                                                    <input type="text" name="LAST-NAME" formControlName="txt_storeid"
-                                            placeholder="Insertar apellido" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" name="LAST-NAME" formControlName="txt_storeid"
-                                            placeholder="Insertar apellido" class="form-control">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" 
-                                                data-dismiss="modal">Actualizar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+      </div>
     </div>
-
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover bg-white">
+        <thead>
+          <tr>
+            <th>ID-CUSTOMER</th>
+            <th>STORE-ID</th>
+            <th>FIRST-NAME</th>
+            <th>LAST-NAME</th>
+            <th>EMAIL</th>
+            <th>ADDRES</th>
+            <th>ACTIVE</th>
+            <th>CREATE-DATE</th>
+            <th>LAST-UPDATE</th>
+            <th>OPCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clientes">
+            <td>
+              {{ c.customer_id }}
+            </td>
+            <td>
+              {{ c.store_id }}
+            </td>
+            <td>
+              {{ c.first_name }}
+            </td>
+            <td>
+              {{ c.last_name }}
+            </td>
+            <td>
+              {{ c.email }}
+            </td>
+            <td>
+              {{ c.address_name }}
+            </td>
+            <td *ngIf="c.active == 1">Activo</td>
+            <td *ngIf="c.active == 0">Inactivo</td>
+            <td>
+              {{ c.create_date }}
+            </td>
+            <td>
+              {{ c.last_update }}
+            </td>
+            <td class="d-flex-justify-content-center">
+              <a class="btn btn-danger" (click)="deleteCliente(c.customer_id)">
+                <i class="fas fa-trash-alt"> </i>
+              </a>
+              <a
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#editarCliente"
+                (click)="chooseUpdate(c)"
+              >
+                <i class="fas fa-edit"> </i>
+              </a>
+            
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        
+      <div
+      class="modal fade"
+      id="editarCliente"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Editar Cliente
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="form">
+              <div class="form-group">
+                  <label for="">Nombre</label>
+                  <input
+                    type="text"
+                    name="FIRST-NAME"
+                    [(ngModel)]="cliente.first_name"
+                    value="txt_firstname"
+                    formControlName="txt_firstname"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="">Apellido</label>
+                  <input
+                    type="text"
+                    name="LAST-NAME"
+                    [(ngModel)]="cliente.last_name"
+                    formControlName="txt_lastname"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="">Email</label>
+                  <input
+                    type="text"
+                    name="EMAIL"
+                    [(ngModel)]="cliente.email"
+                    formControlName="txt_email"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="">Tienda</label>
+                  <select
+                    name="STORE"
+                    class="form-control"
+                    [(ngModel)]="cliente.store_id"
+                    formControlName="select_store"
+                  >
+                    <option
+                      *ngFor="let item of store; let i = index"
+                      [value]="item"
+                    >
+                      Tienda {{ store[i] }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="">Dirección</label>
+                  <select
+                    name="ADDRESS"
+                    class="form-control"
+                    [(ngModel)]="cliente.address_id"
+                    formControlName="select_address"
+                  >
+                    <option
+                      *ngFor="let item of address"
+                      [value]="item.addressId"
+                    >
+                      {{ item.addressName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="ISACTIVE">Estado</label>
+                    <select
+                      name="ISACTIVE"
+                      class="form-control"
+                      formControlName="select_isActive"
+                      [(ngModel)]="cliente.active"
+                    >
+                      <option value="1">Activo</option>
+                      <option value="0" selected>Inactivo</option>
+                    </select>
+                  </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              (click)="updateCliente()"
+            >
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 </div>
